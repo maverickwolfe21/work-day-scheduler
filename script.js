@@ -1,7 +1,7 @@
 $(function () {
   $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY"));
 
-  // updateUi();
+  updateUi();
 
   const currentHour = dayjs().hour() - 9;
   for (let i = 0; i < 9; i++) {
@@ -38,17 +38,15 @@ $(function () {
       schedule[parentId].text = targetText.trim();
       localStorage.setItem("schedule", JSON.stringify(schedule));
     }
-
-    // updateUi();
   });
 
-  // function updateUi() {
-  //   const prevSchedule = JSON.parse(localStorage.getItem("schedule"));
-  //   if (prevSchedule) {
-  //     for (let i = 0; i < 9; i++) {
-  //       const workRow = $(`#hour-${i}`);
-  //       workRow.children(1).val(prevSchedule[i].text);
-  //     }
-  //   }
-  // }
+  function updateUi() {
+    const prevSchedule = JSON.parse(localStorage.getItem("schedule"));
+    if (prevSchedule) {
+      for (let i = 0; i < 9; i++) {
+        const workRow = $(`#hour-${i}`);
+        workRow.children(1).val(prevSchedule[i].text);
+      }
+    }
+  }
 });
